@@ -1,6 +1,18 @@
 
-
+CREATE DATABASE ACCOUNTS
 USE ACCOUNTS;
+
+CREATE SCHEMA Accounts
+CREATE TABLE Accounts.Employees (
+    EmployeeID INT PRIMARY KEY,
+    FirstName VARCHAR(50) ,
+    LastName VARCHAR(50),
+    Email VARCHAR(100),
+    Phone VARCHAR(15),
+    HireDate DATE,
+    DepartmentID INT,
+    Salary DECIMAL(10,2)
+);
 
 INSERT INTO Accounts.Employees(EmployeeID, FirstName, LastName, Email, Phone, HireDate, DepartmentID, Salary)
 VALUES
@@ -95,4 +107,5 @@ VALUES
 (18,18,'2025-09-01',50000,'Bank Transfer'),
 (19,19,'2025-09-01',55000,'Cash'),
 (20,20,'2025-09-01',58000,'Cheque');
-                
+              
+           
