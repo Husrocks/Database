@@ -1,0 +1,25 @@
+SELECT last_name,
+       job_id,
+       hire_date AS STARTDATE,
+       employee_id
+FROM employees
+ORDER BY employee_id;
+
+SELECT last_name AS Employee,
+       last_name + ', ' + job_id AS Title
+FROM employees;
+
+EXEC sp_help 'departments';
+
+SELECT DISTINCT job_id
+FROM employees;
+
+SELECT first_name + ' ' + last_name AS Name
+FROM employees;
+
+SELECT first_name,
+       salary * 12 AS annual_salary
+FROM employees;
+
+
+

@@ -1,0 +1,60 @@
+
+USE ACCOUNTS;
+GO
+
+IF OBJECT_ID('accounts.countries','U') IS NOT NULL
+  DROP TABLE accounts.countries;
+GO
+
+CREATE TABLE accounts.countries  (
+    CountryID     INT IDENTITY(1,1) PRIMARY KEY,
+    CountryName   NVARCHAR(100) NOT NULL,
+    Continent     NVARCHAR(50),
+    Capital       NVARCHAR(100),
+    POP           BIGINT,            -- population
+    Area_km2      BIGINT             -- area in square kilometers (example)
+);
+GO
+
+
+INSERT INTO accounts.countries (CountryName, Continent, Capital, POP, Area_km2)
+VALUES
+('Utopia',     'Asia',    'Utopiaville',   5000000,   45000),
+('Beulah',     'Europe',  'Beulah City',  2000000,   25000);
+GO
+
+
+SELECT * FROM accounts.countries ORDER BY CountryID;
+GO
+
+
+INSERT INTO accounts.countries (CountryName, Continent, Capital, POP, Area_km2)
+VALUES ('Arcadia', 'Africa', 'Arcadia Town', 1200000, 18000);
+GO
+
+
+SELECT * FROM 
+.countries ORDER BY CountryID;
+GO
+
+
+UPDATE accounts.countries
+SET POP = 100000000
+WHERE CountryName = 'Beulah';
+GO
+
+
+SELECT CountryID, CountryName, POP FROM ACCOUNTS.COUNTRIES WHERE CountryName = 'Beulah';
+GO
+
+DELETE FROM accounts.countries
+WHERE CountryName = 'Beulah';
+GO
+
+
+SELECT * FROM accounts.countries WHERE CountryName = 'Beulah';
+GO
+
+
+SELECT * FROM accounts.countries ORDER BY CountryID;
+GO

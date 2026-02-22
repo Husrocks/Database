@@ -1,0 +1,109 @@
+CREATE DATABASE ACCOUNTS;
+GO
+use ACCOUNTS
+GO
+CREATE SCHEMA accounts;
+GO
+USE ACCOUNTS;
+GO
+CREATE TABLE accounts.Clients (
+    ClientID INT IDENTITY(1,1) PRIMARY KEY,
+    Name NVARCHAR(100),
+    Email NVARCHAR(150),
+    PhoneNo NVARCHAR(20)
+);
+CREATE TABLE accounts.Invoices (
+    InvoiceID INT IDENTITY(1,1) PRIMARY KEY,
+    ClientID INT FOREIGN KEY REFERENCES ACCOUNTS.Clients(ClientID),
+    InvoiceDate DATE,
+    Amount DECIMAL(10,2),
+    Status NVARCHAR(50)
+);
+CREATE TABLE accounts.Payments (
+    PaymentID INT IDENTITY(1,1) PRIMARY KEY,
+    InvoiceID INT FOREIGN KEY REFERENCES ACCOUNTS.Invoices(InvoiceID),
+    PaymentDate DATE,
+    AmountPaid DECIMAL(10,2),
+    PaymentMethod NVARCHAR(50)
+);
+
+
+INSERT INTO accounts.Clients (Name, Email, PhoneNo)
+VALUES
+('Ali Khan', 'ali.khan@example.com', '03001111111'),
+('Sara Malik', 'sara.malik@example.com', '03002222222'),
+('Faisal Ahmed', 'faisal.ahmed@example.com', '03003333333'),
+('Ayesha Iqbal', 'ayesha.iqbal@example.com', '03004444444'),
+('Bilal Raza', 'bilal.raza@example.com', '03005555555'),
+('Noor Javed', 'noor.javed@example.com', '03006666666'),
+('Hamza Shah', 'hamza.shah@example.com', '03007777777'),
+('Iqra Khan', 'iqra.khan@example.com', '03008888888'),
+('Adnan Ali', 'adnan.ali@example.com', '03009999990'),
+('Rabia Noor', 'rabia.noor@example.com', '03111111111'),
+('Tariq Hussain', 'tariq.hussain@example.com', '03112222222'),
+('Kiran Rauf', 'kiran.rauf@example.com', '03113333333'),
+('Junaid Iqbal', 'junaid.iqbal@example.com', '03114444444'),
+('Nimra Khan', 'nimra.khan@example.com', '03115555555'),
+('Sana Mir', 'sana.mir@example.com', '03116666666'),
+('Haris Ahmed', 'haris.ahmed@example.com', '03117777777'),
+('Mehak Tariq', 'mehak.tariq@example.com', '03118888888'),
+('Usman Zafar', 'usman.zafar@example.com', '03119999999'),
+('Khadija Noor', 'khadija.noor@example.com', '03221111111'),
+('Zain Malik', 'zain.malik@example.com', '03222222222');
+GO
+
+INSERT INTO accounts.Invoices (ClientID, InvoiceDate, Amount, Status)
+VALUES
+(1, '2025-01-05', 1250.00, 'Paid'),
+(2, '2025-01-08', 760.50, 'Unpaid'),
+(3, '2025-01-10', 3200.00, 'Paid'),
+(4, '2025-01-12', 410.75, 'Unpaid'),
+(5, '2025-01-15', 980.00, 'Paid'),
+(6, '2025-01-18', 150.00, 'Paid'),
+(7, '2025-01-20', 2300.00, 'Overdue'),
+(8, '2025-01-22', 450.00, 'Unpaid'),
+(9, '2025-01-25', 1299.99, 'Paid'),
+(10, '2025-01-28', 600.00, 'Unpaid'),
+(11, '2025-02-01', 1750.00, 'Paid'),
+(12, '2025-02-03', 340.00, 'Paid'),
+(13, '2025-02-07', 890.00, 'Unpaid'),
+(14, '2025-02-10', 2100.00, 'Paid'),
+(15, '2025-02-12', 120.00, 'Unpaid'),
+(16, '2025-02-14', 999.99, 'Paid'),
+(17, '2025-02-18', 450.50, 'Unpaid'),
+(18, '2025-02-20', 2200.00, 'Paid'),
+(19, '2025-02-22', 305.00, 'Paid'),
+(20, '2025-02-25', 1575.00, 'Overdue');
+GO
+
+INSERT INTO accounts.Payments (InvoiceID, PaymentDate, AmountPaid, PaymentMethod)
+VALUES
+(1, '2025-01-07', 1250.00, 'Bank Transfer'),
+(2, '2025-01-20', 760.50, 'Cash'),
+(3, '2025-01-15', 3200.00, 'Credit Card'),
+(4, '2025-02-02', 410.75, 'Cash'),
+(5, '2025-01-18', 980.00, 'Bank Transfer'),
+(6, '2025-01-19', 150.00, 'Cash'),
+(7, '2025-03-01', 2300.00, 'Cheque'),
+(8, '2025-02-10', 450.00, 'Credit Card'),
+(9, '2025-01-27', 1299.99, 'Bank Transfer'),
+(10, '2025-02-05', 600.00, 'Cash'),
+(11, '2025-02-03', 1750.00, 'Credit Card'),
+(12, '2025-02-05', 340.00, 'Bank Transfer'),
+(13, '2025-02-20', 890.00, 'Cash'),
+(14, '2025-02-12', 2100.00, 'Cheque'),
+(15, '2025-02-25', 120.00, 'Cash'),
+(16, '2025-02-16', 999.99, 'Credit Card'),
+(17, '2025-02-28', 450.50, 'Bank Transfer'),
+(18, '2025-02-22', 2200.00, 'Cheque'),
+(19, '2025-02-24', 305.00, 'Cash'),
+(20, '2025-03-05', 1575.00, 'Bank Transfer');
+GO
+
+
+USE ACCOUNTS;
+GO
+
+SELECT * FROM accounts.Clients;
+SELECT * FROM accounts.Invoices;
+SELECT * FROM accounts.Payments;
